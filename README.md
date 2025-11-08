@@ -1,70 +1,333 @@
-# Getting Started with Create React App
+# 💬 Gemini Chat Frontend
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+React 기반의 AI 채팅 애플리케이션 프론트엔드입니다.
 
-## Available Scripts
+## 📋 프로젝트 개요
 
-In the project directory, you can run:
+Google Gemini AI를 활용한 대화형 채팅 서비스의 사용자 인터페이스입니다.
+깔끔하고 직관적인 UI/UX로 사용자 친화적인 채팅 경험을 제공합니다.
 
-### `npm start`
+## 🛠 기술 스택
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+### 핵심 기술
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+- **React 18** - UI 라이브러리
+- **React Router v6** - 라우팅
+- **Axios** - HTTP 클라이언트
+- **CSS3** - 스타일링 (CSS Variables for theming)
 
-### `npm test`
+### 주요 특징
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+- ⚡ 함수형 컴포넌트 + Hooks
+- 🎨 다크/라이트 테마 지원
+- 📱 반응형 디자인
+- 🔄 실시간 메시지 업데이트
+- 💾 LocalStorage 기반 상태 관리
 
-### `npm run build`
+## ✨ 주요 기능
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+### 1. 사용자 인증
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+- ✅ 회원가입 (이메일 검증)
+- ✅ 로그인 (토큰 기반)
+- ✅ 비밀번호 찾기
+- ✅ 비밀번호 재설정
+- ✅ 로그아웃
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+### 2. 채팅 인터페이스
 
-### `npm run eject`
+- ✅ 실시간 메시지 전송
+- ✅ AI 응답 수신
+- ✅ 타이핑 인디케이터
+- ✅ 자동 스크롤
+- ✅ 메시지 히스토리
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+### 3. 대화 관리
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+- ✅ 새 대화 생성
+- ✅ 대화 목록 표시
+- ✅ 대화 전환
+- ✅ 대화 삭제
+- ✅ 대화 제목 자동 생성
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+### 4. 테마
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+- ✅ 라이트 모드
+- ✅ 다크 모드
+- ✅ 테마 전환 애니메이션
+- ✅ 설정 저장 (LocalStorage)
 
-## Learn More
+### 5. UI/UX
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+- ✅ 깔끔한 Gemini 스타일 디자인
+- ✅ 부드러운 애니메이션
+- ✅ 반응형 레이아웃
+- ✅ 모바일 지원
+- ✅ 접근성 고려
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+## 📁 프로젝트 구조
 
-### Code Splitting
+```
+frontend/
+├── public/
+│   ├── index.html
+│   └── favicon.ico
+│
+├── src/
+│   ├── components/              # React 컴포넌트
+│   │   ├── Login.js            # 로그인 페이지
+│   │   ├── Register.js         # 회원가입 페이지
+│   │   ├── ForgotPassword.js   # 비밀번호 찾기
+│   │   ├── ResetPassword.js    # 비밀번호 재설정
+│   │   ├── Dashboard.js        # 메인 채팅 화면
+│   │   ├── Dashboard.css       # 메인 스타일
+│   │   ├── Sidebar.js          # 사이드바 (대화 목록)
+│   │   ├── Sidebar.css         # 사이드바 스타일
+│   │   ├── ChatArea.js         # 채팅 영역
+│   │   └── ChatArea.css        # 채팅 영역 스타일
+│   │
+│   ├── services/               # API 서비스
+│   │   └── api.js             # Axios 인스턴스 및 API 함수
+│   │
+│   ├── App.js                 # 메인 App 컴포넌트
+│   ├── App.css                # 전역 스타일
+│   └── index.js               # 엔트리 포인트
+│
+├── package.json               # 프로젝트 의존성
+└── README.md
+```
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+## 🎨 화면 구성
 
-### Analyzing the Bundle Size
+### 1. 로그인 화면 (`/login`)
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+```
+┌────────────────────────────────┐
+│                                │
+│          로그인                │
+│                                │
+│  ┌────────────────────────┐   │
+│  │ 이메일                 │   │
+│  └────────────────────────┘   │
+│                                │
+│  ┌────────────────────────┐   │
+│  │ 비밀번호               │   │
+│  └────────────────────────┘   │
+│                                │
+│  [ 로그인 ]                    │
+│                                │
+│  비밀번호를 잊으셨나요?         │
+│  계정이 없으신가요? 회원가입    │
+│                                │
+└────────────────────────────────┘
+```
 
-### Making a Progressive Web App
+### 2. 메인 채팅 화면 (`/dashboard`)
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+```
+┌─────────────────────────────────────────────────────┐
+│  ☰ Gemini Chat                                      │
+├──────────┬──────────────────────────────────────────┤
+│          │                                          │
+│ + 새대화 │  안녕하세요! 무엇을 도와드릴까요?         │
+│          │                                          │
+│ ━━━━━━━  │  👤 안녕하세요                           │
+│          │                                          │
+│ 대화1    │  🤖 답변          │
+│ 대화2    │                                          │
+│ 대화3    │                                          │
+│          │                                          │
+│          ├──────────────────────────────────────────┤
+│ ━━━━━━━  │  ┌────────────────────────┐  [ ➤ ]     │
+│          │  │ 메시지를 입력하세요...  │             │
+│ 🌙 다크  │  └────────────────────────┘             │
+│          │                                          │
+│ user@... │                                          │
+│ 로그아웃  │                                          │
+└──────────┴──────────────────────────────────────────┘
+```
 
-### Advanced Configuration
+## 🔌 API 연동
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+### API Base URL
 
-### Deployment
+```javascript
+const API_BASE_URL = "http://localhost:8080/api";
+```
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+### 인증 API
 
-### `npm run build` fails to minify
+```javascript
+// 회원가입
+authService.register(email, password);
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+// 로그인
+authService.login(email, password);
+
+// 비밀번호 찾기
+authService.forgotPassword(email);
+
+// 비밀번호 재설정
+authService.resetPassword(token, newPassword);
+```
+
+### 채팅 API
+
+```javascript
+// 새 대화 생성
+chatService.createConversation();
+
+// 대화 목록 조회
+chatService.getConversations();
+
+// 메시지 조회
+chatService.getMessages(conversationId);
+
+// 메시지 전송
+chatService.sendMessage(conversationId, content);
+
+// 대화 삭제
+chatService.deleteConversation(conversationId);
+```
+
+## 🎨 테마 시스템
+
+### CSS Variables
+
+```css
+/* 라이트 모드 */
+:root[data-theme="light"] {
+  --bg-primary: #ffffff;
+  --bg-secondary: #f8f9fa;
+  --bg-tertiary: #e9ecef;
+  --text-primary: #202124;
+  --text-secondary: #5f6368;
+  --border-color: #dadce0;
+  --accent-color: #1a73e8;
+}
+
+/* 다크 모드 */
+:root[data-theme="dark"] {
+  --bg-primary: #202124;
+  --bg-secondary: #292a2d;
+  --bg-tertiary: #35363a;
+  --text-primary: #e8eaed;
+  --text-secondary: #9aa0a6;
+  --border-color: #5f6368;
+  --accent-color: #8ab4f8;
+}
+```
+
+### 테마 전환
+
+```javascript
+const [theme, setTheme] = useState(localStorage.getItem("theme") || "light");
+
+const toggleTheme = () => {
+  setTheme((prev) => (prev === "light" ? "dark" : "light"));
+};
+```
+
+## 🔧 설치 및 실행
+
+### 1. 개발 서버 실행
+
+```bash
+npm start
+```
+
+브라우저에서 자동으로 열림: http://localhost:3000
+
+## 📱 반응형 디자인
+
+### 브레이크포인트
+
+- **Desktop**: > 768px
+- **Mobile**: ≤ 768px
+
+### 모바일 최적화
+
+```css
+@media (max-width: 768px) {
+  .sidebar {
+    position: absolute;
+    z-index: 1000;
+  }
+
+  .welcome-screen h1 {
+    font-size: 24px;
+  }
+}
+```
+
+## 🎯 상태 관리
+
+### LocalStorage 사용
+
+```javascript
+// 인증 정보 저장
+localStorage.setItem("token", data.token);
+localStorage.setItem("userId", data.userId);
+localStorage.setItem("email", data.email);
+
+// 테마 설정 저장
+localStorage.setItem("theme", theme);
+
+// 로그아웃 시 정리
+localStorage.clear();
+```
+
+### React State
+
+```javascript
+// 대화 목록
+const [conversations, setConversations] = useState([]);
+
+// 현재 대화
+const [currentConversation, setCurrentConversation] = useState(null);
+
+// 메시지 목록
+const [messages, setMessages] = useState([]);
+
+// 사이드바 표시
+const [sidebarOpen, setSidebarOpen] = useState(true);
+
+// 테마
+const [theme, setTheme] = useState("light");
+```
+
+## ✨ 애니메이션
+
+### 메시지 페이드인
+
+```css
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+```
+
+### 타이핑 인디케이터
+
+```css
+@keyframes typing {
+  0%,
+  60%,
+  100% {
+    transform: translateY(0);
+    opacity: 0.5;
+  }
+  30% {
+    transform: translateY(-10px);
+    opacity: 1;
+  }
+}
+
+---**마지막업데이트: * * 2025-11-08;
+```
