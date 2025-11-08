@@ -1,40 +1,89 @@
 import axios from "axios";
 
-// Backend URL
-const API_URL = "http://localhost:8080/api/auth";
+const API_BASE_URL = "http://localhost:8080/api";
 
-// Create axios instance
+// Create axios instance with default config
 const api = axios.create({
-  baseURL: API_URL,
+  baseURL: API_BASE_URL,
   headers: {
     "Content-Type": "application/json",
   },
 });
 
-// API functions
+// Add request interceptor to include userId in headers
+api.interceptors.request.use(
+  (config) => {
+    const userId = localStorage.getItem("userId");
+    if (userId) {
+      config.headers["X-User-Id"] = userId;
+    }
+    return config;
+  },
+  (error) => {
+    return Promise.reject(error);
+  }
+);
+
+// Auth Service
 export const authService = {
-  // Register new user
   register: async (email, password) => {
-    const response = await api.post("/register", { email, password });
+    const response = await api.post("/auth/register", { email, password });
     return response.data;
   },
 
-  // Login
   login: async (email, password) => {
-    const response = await api.post("/login", { email, password });
+    const response = await api.post("/auth/login", { email, password });
     return response.data;
   },
 
-  // Forgot password (send reset email)
   forgotPassword: async (email) => {
-    const response = await api.post("/forgot-password", { email });
+    const response = await api.post("/auth/forgot-password", { email });
     return response.data;
   },
 
-  // Reset password with token
   resetPassword: async (token, newPassword) => {
-    const response = await api.post("/reset-password", { token, newPassword });
+    const response = await api.post("/auth/reset-password", {
+      token,
+      newPassword,
+    });
     return response.data;
+  },
+};
+
+// Chat Service
+export const chatService = {
+  // Create new conversation
+  createConversation: async () => {
+    const response = await api.post("/chat/conversations");
+    return response.data;
+  },
+
+  // Get all user conversations
+  getConversations: async () => {
+    const response = await api.get("/chat/conversations");
+    return response.data;
+  },
+
+  // Get messages for a conversation
+  getMessages: async (conversationId) => {
+    const response = await api.get(
+      `/chat/conversations/${conversationId}/messages`
+    );
+    return response.data;
+  },
+
+  // Send a message
+  sendMessage: async (conversationId, content) => {
+    const response = await api.post("/chat/messages", {
+      conversationId,
+      content,
+    });
+    return response.data;
+  },
+
+  // Delete a conversation
+  deleteConversation: async (conversationId) => {
+    await api.delete(`/chat/conversations/${conversationId}`);
   },
 };
 
