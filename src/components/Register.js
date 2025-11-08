@@ -10,7 +10,7 @@ function Register() {
   const navigate = useNavigate();
 
   const handleSubmit = async (e) => {
-    e.preventDefault(); // Prevent page reload
+    e.preventDefault();
     setError("");
     setLoading(true);
 
@@ -18,15 +18,13 @@ function Register() {
       const data = await authService.register(email, password);
       console.log("Registration successful:", data);
 
-      // Store token in localStorage
+      // ✅ UPDATED: Only store token and email (userId is in JWT)
       localStorage.setItem("token", data.token);
-      localStorage.setItem("userId", data.userId);
       localStorage.setItem("email", data.email);
 
       // Redirect to dashboard
       navigate("/dashboard");
     } catch (err) {
-      // Handle errors
       if (err.response && err.response.data) {
         setError(err.response.data.message || "Registration failed");
       } else {

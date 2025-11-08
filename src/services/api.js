@@ -10,16 +10,29 @@ const api = axios.create({
   },
 });
 
-// Add request interceptor to include userId in headers
+// ✅ UPDATED: Add JWT token to requests instead of X-User-Id
 api.interceptors.request.use(
   (config) => {
-    const userId = localStorage.getItem("userId");
-    if (userId) {
-      config.headers["X-User-Id"] = userId;
+    const token = localStorage.getItem("token");
+    if (token) {
+      config.headers["Authorization"] = `Bearer ${token}`;
     }
     return config;
   },
   (error) => {
+    return Promise.reject(error);
+  }
+);
+
+// ✅ ADDED: Handle 401 errors (expired/invalid tokens)
+api.interceptors.response.use(
+  (response) => response,
+  (error) => {
+    if (error.response?.status === 401) {
+      // Token expired or invalid - redirect to login
+      localStorage.clear();
+      window.location.href = "/login";
+    }
     return Promise.reject(error);
   }
 );

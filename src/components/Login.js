@@ -18,9 +18,8 @@ function Login() {
       const data = await authService.login(email, password);
       console.log("Login successful:", data);
 
-      // Store token in localStorage
+      // ✅ UPDATED: Only store token and email (userId is in JWT)
       localStorage.setItem("token", data.token);
-      localStorage.setItem("userId", data.userId);
       localStorage.setItem("email", data.email);
 
       // Redirect to dashboard
