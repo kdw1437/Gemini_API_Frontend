@@ -42,12 +42,31 @@ body {
   display: flex;
   height: 100vh;
   overflow: hidden;
+  position: relative; /* ✅ ADDED - needed for fixed sidebar positioning */
+}
+
+/* ✅ ADDED - ChatArea margin handling for fixed sidebar */
+.chat-area {
+  flex: 1;
+  margin-left: 260px; /* Make room for fixed sidebar when open */
+  transition: margin-left 0.3s ease;
+}
+
+/* ✅ ADDED - Remove margin when sidebar is closed */
+.dashboard:not(.sidebar-open) .chat-area {
+  margin-left: 0;
 }
 
 /* Responsive adjustments */
 @media (max-width: 768px) {
+  /* ✅ UPDATED - On mobile, chat area always full width */
+  .chat-area {
+    margin-left: 0 !important;
+  }
+  
+  /* ✅ UPDATED - Sidebar becomes overlay on mobile */
   .dashboard.sidebar-open .sidebar {
-    position: absolute;
+    position: fixed; /* Changed from absolute to fixed */
     z-index: 1000;
     box-shadow: 2px 0 10px var(--shadow);
   }
