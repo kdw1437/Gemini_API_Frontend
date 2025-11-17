@@ -8,22 +8,28 @@ body {
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
     'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
     sans-serif;
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  background-color: var(--bg-primary);
   min-height: 100vh;
 }
 
+/* ✅ FIXED - Make App a flex container to center content */
 .App {
   min-height: 100vh;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 20px;
+  display: flex; /* ✅ ADDED */
+  align-items: center; /* ✅ ADDED - vertical center */
+  justify-content: center; /* ✅ ADDED - horizontal center */
 }
 
-/* Auth Container */
+/* ✅ Purple gradient ONLY for auth pages */
+.App:has(.auth-container) {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+}
+
+/* ✅ FIXED - Auth container centering */
 .auth-container {
   width: 100%;
   max-width: 400px;
+  padding: 20px; /* ✅ ADDED - breathing room on mobile */
 }
 
 .auth-card {
@@ -157,7 +163,7 @@ body {
   margin-top: 12px;
 }
 
-/* Dashboard */
+/* Dashboard - No gradient here */
 .dashboard-container {
   width: 100%;
   max-width: 600px;

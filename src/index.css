@@ -5,6 +5,7 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  /* ✅ REMOVED background here - let App.css and Dashboard.css handle it */
 }
 
 code {

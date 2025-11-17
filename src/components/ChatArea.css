@@ -37,10 +37,14 @@
   color: var(--text-primary);
 }
 
+/* ✅ FIXED - Center the messages container */
 .messages-container {
   flex: 1;
   overflow-y: auto;
   padding: 24px;
+  display: flex; /* ✅ ADDED */
+  flex-direction: column; /* ✅ ADDED */
+  align-items: center; /* ✅ ADDED - horizontally center messages */
 }
 
 .messages-container::-webkit-scrollbar {
@@ -60,6 +64,8 @@
   height: 100%;
   text-align: center;
   padding: 40px;
+  max-width: 800px; /* ✅ ADDED - constrain width */
+  width: 100%; /* ✅ ADDED */
 }
 
 .welcome-screen h1 {
@@ -74,11 +80,14 @@
   color: var(--text-secondary);
 }
 
+/* ✅ FIXED - Messages are now centered with max-width */
 .message {
   display: flex;
   gap: 16px;
   margin-bottom: 24px;
   animation: fadeIn 0.3s ease;
+  width: 100%; /* ✅ ADDED */
+  max-width: 800px; /* ✅ ADDED - constrain width like Gemini */
 }
 
 @keyframes fadeIn {
@@ -110,7 +119,7 @@
 
 .message-content {
   flex: 1;
-  max-width: 800px;
+  max-width: 100%; /* ✅ CHANGED - allow full width within message */
 }
 
 .message-text {
@@ -168,11 +177,13 @@
   padding: 24px;
   background-color: var(--bg-primary);
   border-top: 1px solid var(--border-color);
+  display: flex; /* ✅ ADDED */
+  justify-content: center; /* ✅ ADDED - center the form */
 }
 
 .input-container form {
   max-width: 800px;
-  margin: 0 auto;
+  width: 100%; /* ✅ ADDED - fill available width */
   display: flex;
   gap: 12px;
   align-items: flex-end;
@@ -239,5 +250,10 @@
 
   .welcome-screen h1 {
     font-size: 24px;
+  }
+  
+  /* ✅ ADDED - Messages stay centered on mobile */
+  .message {
+    max-width: 100%;
   }
 }
